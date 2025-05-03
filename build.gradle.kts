@@ -10,7 +10,6 @@ plugins {
 
 allprojects {
     group = "org.enginehub.worldeditcui-protocol"
-    version = "${rootProject.libs.versions.minecraft.get()}+01-SNAPSHOT"
 
     repositories {
         // mirrors:
@@ -40,6 +39,10 @@ subprojects {
             toolchain.languageVersion = JavaLanguageVersion.of(targetVersion)
         }
         withSourcesJar()
+    }
+
+    extensions.configure<BasePluginExtension> {
+        archivesName.set("${project.name}-mc${rootProject.libs.versions.minecraft.get()}")
     }
 
     tasks.withType(JavaCompile::class).configureEach {
@@ -97,6 +100,7 @@ subprojects {
     extensions.configure(PublishingExtension::class) {
         publications {
             register("maven", MavenPublication::class) {
+                artifactId = the<BasePluginExtension>().archivesName.get()
                 from(components.getByName("java"))
             }
         }
