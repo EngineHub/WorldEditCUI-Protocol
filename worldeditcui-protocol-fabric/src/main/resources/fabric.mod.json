@@ -5,15 +5,11 @@
   "name": "WorldEditCUI Protocol (Fabric)",
   "description": "Protocol implementation for the client-side user interface for WorldEdit",
   "authors": [
-    "lahwran",
-    "yetanotherx",
-    "Mumfrey",
-    "TomyLobo",
-    "mikroskeem"
+    "EngineHub"
   ],
   "contact": {
-    "homepage": "https://github.com/EngineHub/WorldEditCUI",
-    "sources": "https://github.com/EngineHub/WorldEditCUI"
+    "homepage": "https://github.com/EngineHub/WorldEditCUI-Protocol",
+    "sources": "https://github.com/EngineHub/WorldEditCUI-Protocol"
   },
   "custom": {
     "modmenu": {
@@ -35,6 +31,6 @@
   "depends": {
     "fabric-api-base": "*",
     "fabric-networking-api-v1": "*",
-    "minecraft": ">=1.21.2"
+    "minecraft": ">=1.21.5"
   }
 }
