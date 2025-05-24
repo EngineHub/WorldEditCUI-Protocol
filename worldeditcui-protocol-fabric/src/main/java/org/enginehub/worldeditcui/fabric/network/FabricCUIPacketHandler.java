@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2024 WorldEditCUI team and contributors
+ * Copyright (c) 2011-2025 WorldEditCUI team and contributors
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -16,7 +16,6 @@ package org.enginehub.worldeditcui.fabric.network;
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import org.apache.commons.compress.archivers.sevenz.CLI;
 import org.enginehub.worldeditcui.protocol.CUIPacket;
 import org.enginehub.worldeditcui.protocol.CUIPacketHandler;
 
@@ -40,12 +39,7 @@ public class FabricCUIPacketHandler implements CUIPacketHandler {
     }
 
     static void registerClient() {
-        ClientPlayNetworking.registerGlobalReceiver(CUIPacket.TYPE, (pkt, ctx) -> {
-            final PacketContext cuiCtx = new PacketContext(ctx.player(), ctx.client());
-            for (BiConsumer<CUIPacket, PacketContext> handler : CLIENTBOUND_HANDLERS) {
-                handler.accept(pkt, cuiCtx);
-            }
-        });
+        ClientPlayNetworking.registerGlobalReceiver(CUIPacket.TYPE, ClientHandler::clientHandler);
     }
 
     @Override
@@ -55,6 +49,15 @@ public class FabricCUIPacketHandler implements CUIPacketHandler {
 
     @Override
     public void registerServerboundHandler(BiConsumer<CUIPacket, PacketContext> serverbound) {
-        SERVERBOUND_HANDLERS.add(requireNonNull(serverbound, "clientbound"));
+        SERVERBOUND_HANDLERS.add(requireNonNull(serverbound, "serverbound"));
+    }
+
+    private static class ClientHandler {
+        private static void clientHandler(CUIPacket pkt, ClientPlayNetworking.Context ctx) {
+            final PacketContext cuiCtx = new PacketContext(ctx.player(), ctx.client());
+            for (BiConsumer<CUIPacket, PacketContext> handler : CLIENTBOUND_HANDLERS) {
+                handler.accept(pkt, cuiCtx);
+            }
+        }
     }
 }

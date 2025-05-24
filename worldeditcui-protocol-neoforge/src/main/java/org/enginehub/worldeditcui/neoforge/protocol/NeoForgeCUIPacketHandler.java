@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2024 WorldEditCUI team and contributors
+ * Copyright (c) 2011-2025 WorldEditCUI team and contributors
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -51,7 +51,7 @@ public class NeoForgeCUIPacketHandler implements CUIPacketHandler {
 
     @Override
     public void registerServerboundHandler(BiConsumer<CUIPacket, PacketContext> serverbound) {
-        SERVERBOUND_HANDLERS.add(requireNonNull(serverbound, "clientbound"));
+        SERVERBOUND_HANDLERS.add(requireNonNull(serverbound, "serverbound"));
     }
 
 }
