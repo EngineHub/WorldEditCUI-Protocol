@@ -31,6 +31,6 @@ public class NeoForgeProtocolMod {
     @SubscribeEvent
     public void registerPacket(final RegisterPayloadHandlersEvent event) {
         final PayloadRegistrar registrar = event.registrar(CUIPacket.protocolVersion()).optional();
-        registrar.playBidirectional(CUIPacket.TYPE, CUIPacket.CODEC, NeoForgeCUIPacketHandler.asHandler());
+        registrar.playBidirectional(CUIPacket.TYPE, CUIPacket.CODEC, NeoForgeCUIPacketHandler.asHandler(), NeoForgeCUIPacketHandler.asHandler());
     }
 }
