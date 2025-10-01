@@ -31,7 +31,7 @@ public class FabricCUIPacketHandler implements CUIPacketHandler {
 
     static void register() {
         ServerPlayNetworking.registerGlobalReceiver(CUIPacket.TYPE, (pkt, ctx) -> {
-            final PacketContext cuiCtx = new PacketContext(ctx.player(), ctx.player().getServer());
+            final PacketContext cuiCtx = new PacketContext(ctx.player(), ctx.server());
             for (BiConsumer<CUIPacket, PacketContext> handler : SERVERBOUND_HANDLERS) {
                 handler.accept(pkt, cuiCtx);
             }
