@@ -101,6 +101,17 @@ subprojects {
             }
         }
     }
+
+    plugins.withId("com.gradleup.shadow") {
+        extensions.configure(PublishingExtension::class) {
+            publications {
+                named("maven", MavenPublication::class) {
+                    // Add the shadow jar in subprojects that contain one.
+                    artifact(tasks.named("shadowJar"))
+                }
+            }
+        }
+    }
 }
 
 val ARTIFACTORY_CONTEXT_URL = "artifactory_contextUrl"
