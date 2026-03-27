@@ -106,8 +106,11 @@ subprojects {
         extensions.configure(PublishingExtension::class) {
             publications {
                 named("maven", MavenPublication::class) {
+                    artifacts.clear()
+
                     // Add the shadow jar in subprojects that contain one.
                     artifact(tasks.named("shadowJar"))
+                    artifact(tasks.named("jar"))
                 }
             }
         }
