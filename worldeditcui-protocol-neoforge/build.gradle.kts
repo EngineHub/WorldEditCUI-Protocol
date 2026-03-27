@@ -24,7 +24,7 @@ val shadowBundleClasspath = configurations.resolvable("shadowBundleClasspath") {
 dependencies {
     neoForge(libs.neoforge)
 
-    "common"(project(":worldeditcui-protocol-common", configuration = "namedElements")) { isTransitive = false }
+    "common"(project(":worldeditcui-protocol-common")) { isTransitive = false }
     "shadowBundle"(project(":worldeditcui-protocol-common", configuration = "transformProductionNeoForge"))
 }
 
@@ -35,10 +35,14 @@ indraSpotlessLicenser {
 tasks {
     shadowJar {
         configurations = listOf(shadowBundleClasspath.get())
-        archiveClassifier = "dev-shadow"
+        archiveClassifier = ""
     }
 
-    remapJar {
-        inputFile = shadowJar.flatMap { it.archiveFile }
+    jar {
+        archiveClassifier = "dev"
+    }
+
+    assemble {
+        dependsOn(shadowJar)
     }
 }

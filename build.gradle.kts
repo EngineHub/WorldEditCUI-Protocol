@@ -19,7 +19,6 @@ allprojects {
         // - https://maven.terraformersmc.com/releases/
         // - https://maven.minecraftforge.net/
         // - https://maven.neoforged.net/
-        // - https://maven.parchmentmc.org/
         // - https://repo.viaversion.com/
         maven(url = "https://maven.enginehub.org/repo/") {
             name = "enginehub"
@@ -75,7 +74,6 @@ subprojects {
             decompilerOptions.named("vineflower") {
                 options.put("win", "0")
             }
-            silentMojangMappingsLicense()
         }
 
         // Ugly hack for easy genSourcening
@@ -91,17 +89,7 @@ subprojects {
 
         dependencies {
             "minecraft"(libs.minecraft)
-            "mappings"(loom.layered {
-                officialMojangMappings {
-                    nameSyntheticMembers = false
-                }
-                parchment(variantOf(libs.parchment) { artifactType("zip") })
-            })
             "vineflowerDecompilerClasspath"(libs.vineflower)
-        }
-
-        configurations.named("modLocalRuntime") {
-            shouldResolveConsistentlyWith(configurations.getByName("modImplementation"))
         }
     }
 

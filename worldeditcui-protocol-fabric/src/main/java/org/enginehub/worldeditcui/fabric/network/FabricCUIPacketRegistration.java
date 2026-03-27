@@ -21,8 +21,8 @@ import org.enginehub.worldeditcui.protocol.CUIPacket;
 public class FabricCUIPacketRegistration implements ModInitializer {
     @Override
     public void onInitialize() {
-        PayloadTypeRegistry.playS2C().register(CUIPacket.TYPE, CUIPacket.CODEC);
-        PayloadTypeRegistry.playC2S().register(CUIPacket.TYPE, CUIPacket.CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(CUIPacket.TYPE, CUIPacket.CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(CUIPacket.TYPE, CUIPacket.CODEC);
         FabricCUIPacketHandler.register();
     }
 }

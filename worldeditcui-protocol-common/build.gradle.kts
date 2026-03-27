@@ -19,5 +19,5 @@ tasks.withType(TransformingTask::class).configureEach {
 }
 
 dependencies {
-    modImplementation(libs.fabric.loader)
+    implementation(libs.fabric.loader)
 }

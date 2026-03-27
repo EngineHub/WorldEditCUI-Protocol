@@ -25,20 +25,24 @@ val shadowBundleClasspath = configurations.resolvable("shadowBundleClasspath") {
 }
 
 dependencies {
-    "common"(project(":worldeditcui-protocol-common", configuration = "namedElements")) { isTransitive = false }
+    "common"(project(":worldeditcui-protocol-common")) { isTransitive = false }
     "shadowBundle"(project(":worldeditcui-protocol-common", configuration = "transformProductionFabric"))
-    modImplementation(libs.fabric.loader)
-    modImplementation(platform(libs.fabric.api.bom))
-    modImplementation(libs.fabric.api.networking)
+    implementation(libs.fabric.loader)
+    implementation(platform(libs.fabric.api.bom))
+    implementation(libs.fabric.api.networking)
 }
 
 tasks {
     shadowJar {
         configurations = listOf(shadowBundleClasspath.get())
-        archiveClassifier = "dev-shadow"
+        archiveClassifier = ""
     }
 
-    remapJar {
-        inputFile = shadowJar.flatMap { it.archiveFile }
+    jar {
+        archiveClassifier = "dev"
+    }
+
+    assemble {
+        dependsOn(shadowJar)
     }
 }
