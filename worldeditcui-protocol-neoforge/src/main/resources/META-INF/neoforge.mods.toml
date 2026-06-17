@@ -15,13 +15,13 @@ Protocol implementation for the client-side user interface for WorldEdit
 [[dependencies.worldeditcui_protocol]]
 modId = "neoforge"
 type = "required"
-versionRange = "[26.1,)"
+versionRange = "[26.2,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.worldeditcui_protocol]]
 modId = "minecraft"
 type = "required"
-versionRange = "[26.1,)"
+versionRange = "[26.2,)"
 ordering = "NONE"
 side = "BOTH"
