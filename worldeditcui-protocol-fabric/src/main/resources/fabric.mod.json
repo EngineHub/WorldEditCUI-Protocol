@@ -5,17 +5,27 @@
   "name": "WorldEditCUI Protocol (Fabric)",
   "description": "Protocol implementation for the client-side user interface for WorldEdit",
   "authors": [
-    "EngineHub"
+    {
+      "name": "EngineHub",
+      "contact": {
+        "homepage": "https://enginehub.org/",
+        "discord": "https://discord.gg/enginehub"
+      }
+    }
   ],
   "contact": {
     "homepage": "https://github.com/EngineHub/WorldEditCUI-Protocol",
-    "sources": "https://github.com/EngineHub/WorldEditCUI-Protocol"
+    "sources": "https://github.com/EngineHub/WorldEditCUI-Protocol",
+    "issues": "https://github.com/EngineHub/WorldEditCUI-Protocol/issues",
+    "discord": "https://discord.gg/enginehub"
   },
   "custom": {
     "modmenu": {
       "badges": [ "library" ],
       "links": {
-        "modmenu.discord": "https://discord.gg/enginehub"
+        "modmenu.discord": "https://discord.gg/enginehub",
+        "modmenu.github_sponsors": "https://github.com/sponsors/EngineHub",
+        "modmenu.opencollective": "https://opencollective.com/enginehub"
       }
     }
   },
